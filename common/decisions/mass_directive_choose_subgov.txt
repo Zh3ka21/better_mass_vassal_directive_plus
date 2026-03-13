@@ -1,0 +1,60 @@
+mass_directive_choose_subgov = {
+    picture = { reference = "gfx/interface/illustrations/decisions/fp2_decision_struggle_compromise.dds" }
+    desc = mass_directive_choose_subgov_desc
+    confirm_text = mass_directive_choose_subgov_confirm
+    selection_tooltip = mass_directive_choose_subgov_tooltip
+    decision_group_type = decisions
+
+    is_shown = {
+        any_vassal = { is_landed = yes highest_held_title_tier >= tier_county }
+    }
+
+    widget = {
+        gui = "decision_view_widget_decision_option_list_controller"
+        controller = decision_option_list_controller
+
+        # ───── Admin/Celestial only ─────
+        item = {
+            value = sub_frontier
+            current_description = "Frontier governors"
+            localization = mass_directive_sub_frontier
+            is_shown = { OR = { has_government = administrative_government has_government = celestial_government } }
+            trigger_event = mass_directive_submenu.0002
+            set_variable = { name = chosen_subgov value = frontier_government }
+        }
+
+        item = {
+            value = sub_civil
+            current_description = "Civil governors"
+            localization = mass_directive_sub_civil
+            is_shown = { OR = { has_government = administrative_government has_government = celestial_government } }
+            trigger_event = mass_directive_submenu.0002
+            set_variable = { name = chosen_subgov value = civil_government }
+        }
+
+        item = {
+            value = sub_balanced
+            current_description = "Balanced governors"
+            localization = mass_directive_sub_balanced
+            is_shown = { OR = { has_government = administrative_government has_government = celestial_government } }
+            trigger_event = mass_directive_submenu.0002
+            set_variable = { name = chosen_subgov value = balanced_government }
+        }
+
+        item = {
+            value = sub_military
+            current_description = "Military governors"
+            localization = mass_directive_sub_military
+            is_shown = { OR = { has_government = administrative_government has_government = celestial_government } }
+            trigger_event = mass_directive_submenu.0002
+            set_variable = { name = chosen_subgov value = military_government }
+        }
+
+        # For non-Admin/Celestial, show all directives directly
+        item = { value = mod_improve_development current_description = mod_improve_development_tooltip localization = mod_new_decision_improve_development is_shown = { NOT = { OR = { has_government = administrative_government has_government = celestial_government } } } add_character_flag = vassal_directive_improve_development }
+        item = { value = mod_train_commanders current_description = mod_new_train_commanders_tooltip localization = mod_new_decision_train_commanders is_shown = { NOT = { OR = { has_government = administrative_government has_government = celestial_government } } } add_character_flag = vassal_directive_train_commanders }
+        # Add all other standard directives for non-admin similarly
+    }
+
+    ai_will_do = { base = 0 }
+}

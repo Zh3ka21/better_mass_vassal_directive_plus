@@ -1,0 +1,98 @@
+character_event = {
+    id = mass_directive_submenu.0002
+    title = mass_directive_submenu_title
+    desc = mass_directive_submenu_desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = "Improve Development"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_improve_development
+        }
+    }
+
+    option = {
+        name = "Train Commanders"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_train_commanders
+        }
+    }
+
+    option = {
+        name = "Build Man-at-Arms"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_build_maa
+        }
+    }
+
+    option = {
+        name = "Convert Faith"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_convert_faith
+        }
+    }
+
+    option = {
+        name = "Convert Culture"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_convert_culture
+        }
+    }
+
+    option = {
+        name = "Improve Cultural Acceptance"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_duchy }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_improve_cultural_acceptance
+        }
+    }
+
+    option = {
+        name = "Building Focus: Fortification"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_building_focus_fortification
+        }
+    }
+
+    option = {
+        name = "Building Focus: Military"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_building_focus_military
+        }
+    }
+
+    option = {
+        name = "Building Focus: Economy"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+            add_character_flag = vassal_directive_building_focus_economy
+        }
+    }
+
+    option = {
+        name = "Remove Directive"
+        every_vassal = {
+            limit = { has_government = chosen_subgov highest_held_title_tier >= tier_county }
+            remove_vassal_directives = yes
+        }
+    }
+
+    ai_will_do = { base = 0 }
+}
