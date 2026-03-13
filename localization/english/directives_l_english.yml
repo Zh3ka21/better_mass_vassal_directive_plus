@@ -1,20 +1,19 @@
 l_english:
-  mass_vassal_directives_grouped: "Mass Vassal Directives"
-  mass_vassal_directives_grouped_desc: "Give directives to specific governor types."
+  bmvd_decision_desc: "Issue directives to groups of vassals."
 
-  choose_governor_group: "Choose Governor Group"
-  choose_governor_group_desc: "Select which governors will receive directives."
+  bmvd_admin_choose: "Administrative Governors"
+  bmvd_admin_choose_desc: "Select which administrative governors will receive directives."
 
-  frontier_governors: "Frontier Governors"
-  civil_governors: "Civil Governors"
-  balanced_governors: "Balanced Governors"
-  military_governors: "Military Governors"
+  bmvd_celestial_choose: "Celestial Governors"
+  bmvd_celestial_choose_desc: "Select which celestial governors will receive directives."
 
-  choose_directive: "Select Directive"
+  bmvd_generic_choose: "Mass Directive"
+  bmvd_generic_choose_desc: "Apply directives to all vassals."
 
-  improve_development: "Improve Development"
+  bmvd_choose_directive: "Choose Directive"
+  bmvd_choose_directive_desc: "Select which directive to apply."
+
   train_commanders: "Train Commanders"
-  build_maa: "Expand Men-at-Arms"
-  convert_faith: "Convert Faith"
-  convert_culture: "Convert Culture"
-  economic_buildings: "Economic Construction"
+  build_maa: "Recruit Men-at-Arms"
+  convert_culture: "Promote Culture"
+  remove_directive: "Remove Directive"

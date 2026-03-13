@@ -1,67 +1,59 @@
-apply_mass_directive = {
+bmvd_apply_train_commanders_effect = {
 
-    every_direct_vassal = {
+    every_vassal = {
 
         limit = {
-            is_landed = yes
             highest_held_title_tier >= tier_county
-
-            OR = {
-
-                AND = {
-                    var:directive_group = frontier
-                    has_government = frontier_government
-                }
-
-                AND = {
-                    var:directive_group = civil
-                    has_government = civil_government
-                }
-
-                AND = {
-                    var:directive_group = balanced
-                    has_government = balanced_government
-                }
-
-                AND = {
-                    var:directive_group = military
-                    has_government = military_government
-                }
-
-            }
         }
 
         remove_vassal_directives = yes
+        add_character_flag = vassal_directive_train_commanders
 
-        switch = {
+    }
 
-            trigger = yes
+}
 
-            scope:improve_development ?= {
-                add_character_flag = vassal_directive_improve_development
-            }
 
-            scope:train_commanders ?= {
-                add_character_flag = vassal_directive_train_commanders
-            }
+bmvd_apply_build_maa_effect = {
 
-            scope:build_maa ?= {
-                add_character_flag = vassal_directive_build_maa
-            }
+    every_vassal = {
 
-            scope:convert_faith ?= {
-                add_character_flag = vassal_directive_convert_faith
-            }
-
-            scope:convert_culture ?= {
-                add_character_flag = vassal_directive_convert_culture
-            }
-
-            scope:economy ?= {
-                add_character_flag = vassal_directive_building_focus_economy
-            }
-
+        limit = {
+            highest_held_title_tier >= tier_county
         }
+
+        remove_vassal_directives = yes
+        add_character_flag = vassal_directive_build_maa
+
+    }
+
+}
+
+
+bmvd_apply_convert_culture_effect = {
+
+    every_vassal = {
+
+        limit = {
+            highest_held_title_tier >= tier_county
+        }
+
+        remove_vassal_directives = yes
+        add_character_flag = vassal_directive_convert_culture
+
+    }
+
+}
+
+bmvd_remove_directives_effect = {
+
+    every_vassal = {
+
+        limit = {
+            highest_held_title_tier >= tier_county
+        }
+
+        remove_vassal_directives = yes
 
     }
 

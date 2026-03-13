@@ -1,0 +1,120 @@
+bmvd_admin_menu = {
+
+    picture = { reference = "gfx/interface/illustrations/decisions/fp2_decision_struggle_compromise.dds" }
+
+    desc = bmvd_admin_menu_desc
+    decision_group_type = decisions
+
+    is_shown = {
+        has_government = administrative_government
+        any_vassal = { is_landed = yes }
+    }
+
+    effect = {
+        trigger_event = bmvd.0001
+    }
+
+    ai_will_do = { base = 0 }
+}
+
+
+
+bmvd_celestial_menu = {
+
+    picture = { reference = "gfx/interface/illustrations/decisions/fp2_decision_struggle_compromise.dds" }
+
+    desc = bmvd_celestial_menu_desc
+    decision_group_type = decisions
+
+    is_shown = {
+        has_government = celestial_government
+        any_vassal = { is_landed = yes }
+    }
+
+    effect = {
+        trigger_event = bmvd.0101
+    }
+
+    ai_will_do = { base = 0 }
+}
+
+
+
+bmvd_generic_menu = {
+
+    picture = { reference = "gfx/interface/illustrations/decisions/fp2_decision_struggle_compromise.dds" }
+
+    desc = bmvd_generic_menu_desc
+    decision_group_type = decisions
+
+    is_shown = {
+        NOT = {
+            OR = {
+                has_government = administrative_government
+                has_government = celestial_government
+            }
+        }
+        any_vassal = { is_landed = yes }
+    }
+
+    effect = {
+        trigger_event = bmvd.0201
+    }
+
+    ai_will_do = { base = 0 }
+}
+
+bmvd_mass_vassal_directive = {
+
+    picture = decision_realm_management
+
+    desc = bmvd_decision_desc
+
+    is_shown = {
+        is_landed = yes
+    }
+
+    is_valid = {
+        is_landed = yes
+    }
+
+    effect = {
+
+        # CLEAR PREVIOUS SELECTION FLAGS
+        remove_character_flag = bmvd_admin_balanced
+        remove_character_flag = bmvd_admin_military
+        remove_character_flag = bmvd_admin_civilian
+        remove_character_flag = bmvd_admin_frontier
+        remove_character_flag = bmvd_admin_navy
+        remove_character_flag = bmvd_admin_imperial
+
+        remove_character_flag = bmvd_celestial_civil
+        remove_character_flag = bmvd_celestial_military
+        remove_character_flag = bmvd_celestial_standard
+        remove_character_flag = bmvd_celestial_province_military
+        remove_character_flag = bmvd_celestial_industrial
+
+        remove_character_flag = bmvd_generic
+
+        # GOVERNMENT CHECK
+        if = {
+            limit = { has_government = administrative_government }
+            trigger_event = bmvd.0001
+        }
+
+        else_if = {
+            limit = { has_government = celestial_government }
+            trigger_event = bmvd.0101
+        }
+
+        else = {
+            trigger_event = bmvd.0201
+        }
+
+    }
+
+    ai_will_do = {
+        base = 0
+    }
+
+}

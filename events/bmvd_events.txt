@@ -1,0 +1,129 @@
+character_event = {
+
+    id = bmvd.0001
+    title = bmvd_admin_choose
+    desc = bmvd_admin_choose_desc
+    is_triggered_only = yes
+
+    option = {
+        name = admin_theme_balanced
+        add_character_flag = bmvd_filter_admin_balanced
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = admin_theme_military
+        add_character_flag = bmvd_filter_admin_military
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = admin_theme_civilian
+        add_character_flag = bmvd_filter_admin_civilian
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = admin_theme_frontier
+        add_character_flag = bmvd_filter_admin_frontier
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = admin_theme_navy
+        add_character_flag = bmvd_filter_admin_navy
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = admin_theme_imperial
+        add_character_flag = bmvd_filter_admin_imperial
+        trigger_event = bmvd.1000
+    }
+
+}
+
+
+character_event = {
+
+    id = bmvd.0101
+    title = bmvd_celestial_choose
+    desc = bmvd_celestial_choose_desc
+    is_triggered_only = yes
+
+    option = {
+        name = meritocratic_civil_governor
+        add_character_flag = bmvd_filter_celestial_civil
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = meritocratic_military_governor
+        add_character_flag = bmvd_filter_celestial_military
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = celestial_province_standard
+        add_character_flag = bmvd_filter_celestial_standard
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = celestial_province_military
+        add_character_flag = bmvd_filter_celestial_province_military
+        trigger_event = bmvd.1000
+    }
+
+    option = {
+        name = celestial_province_industrial
+        add_character_flag = bmvd_filter_celestial_industrial
+        trigger_event = bmvd.1000
+    }
+
+}
+
+
+character_event = {
+
+    id = bmvd.0201
+    title = bmvd_generic_choose
+    desc = bmvd_generic_choose_desc
+    is_triggered_only = yes
+
+    option = {
+        name = bmvd_continue
+        add_character_flag = bmvd_filter_generic
+        trigger_event = bmvd.1000
+    }
+
+}
+
+character_event = {
+
+    id = bmvd.1000
+    title = bmvd_choose_directive
+    desc = bmvd_choose_directive_desc
+    is_triggered_only = yes
+
+    option = {
+        name = train_commanders
+        bmvd_apply_train_commanders_effect = yes
+    }
+
+    option = {
+        name = build_maa
+        bmvd_apply_build_maa_effect = yes
+    }
+
+    option = {
+        name = convert_culture
+        bmvd_apply_convert_culture_effect = yes
+    }
+
+    option = {
+        name = remove_directive
+        bmvd_remove_directives_effect = yes
+    }
+
+}
