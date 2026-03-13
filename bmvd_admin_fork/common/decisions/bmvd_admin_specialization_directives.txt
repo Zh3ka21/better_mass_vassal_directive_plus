@@ -1,0 +1,650 @@
+########################################################################
+# Better Mass Vassal Directive — Admin & Celestial Fork
+# Fork of Wehrmachtserdbeere's Better Mass Vassal Directive
+#
+# OBLIGATION CHECKS (confirmed from vanilla files):
+#   Administrative government — vassal_contract_has_flag:
+#     admin_theme_balanced | admin_theme_military | admin_theme_civilian
+#     admin_theme_frontier | admin_theme_navy     | admin_theme_imperial
+#
+#   Celestial government — vassal_contract_has_flag:
+#     meritocratic_civil_governor | meritocratic_military_governor
+#
+# FLOW:
+#   Non-admin/celestial rulers  ->  direct all-vassal directive decisions
+#   Admin/Celestial rulers      ->  Step 1: select group (sets variable)
+#                               ->  Step 2: pick directive (fires + clears)
+########################################################################
+
+# =====================================================================
+# STEP 1A  —  NON-ADMIN/CELESTIAL RULERS
+# Direct decisions, one per directive, target all eligible vassals.
+# =====================================================================
+
+bmvd_mass_directive_all_train_commanders = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_train_commanders_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = train_commanders } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = train_commanders } }
+            set_vassal_directive = train_commanders
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_mass_directive_all_build_military_buildings = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_build_military_buildings_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = build_military_buildings } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = build_military_buildings } }
+            set_vassal_directive = build_military_buildings
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_mass_directive_all_build_economical_buildings = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_build_economical_buildings_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = build_economical_buildings } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = build_economical_buildings } }
+            set_vassal_directive = build_economical_buildings
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_mass_directive_all_improve_development = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_improve_development_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = improve_development } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = improve_development } }
+            set_vassal_directive = improve_development
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_mass_directive_all_convert_to_culture = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_convert_to_culture_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_culture } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_culture } }
+            set_vassal_directive = convert_to_culture
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_mass_directive_all_convert_to_faith = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_mass_directive_all_convert_to_faith_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { OR = { government = administrative_government government = celestial_government } }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = {
+        any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_faith } }
+    }
+    effect = {
+        every_vassal = {
+            limit = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_faith } }
+            set_vassal_directive = convert_to_faith
+        }
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+
+# =====================================================================
+# STEP 1B  —  ADMIN/CELESTIAL: SELECT GROUP
+#
+# Sets variable bmvd_target_group to a flag identifying the group.
+# Flags used:
+#   Administrative: admin_balanced | admin_military | admin_civilian
+#                   admin_frontier | admin_navy     | admin_imperial
+#   Celestial:      celestial_civil | celestial_military
+#   Either:         all
+# =====================================================================
+
+bmvd_admin_cancel_group = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_cancel_group_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = { always = yes }
+    effect = {
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_group_cleared_tt
+    }
+    cost = { gold = 0 }
+}
+
+# ---- Administrative groups ----
+
+bmvd_admin_select_group_balanced = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_balanced_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_balanced }
+        custom_tooltip = bmvd_group_selected_balanced_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_select_group_military = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_military_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_military }
+        custom_tooltip = bmvd_group_selected_military_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_select_group_civilian = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_civilian_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_civilian }
+        custom_tooltip = bmvd_group_selected_civilian_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_select_group_frontier = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_frontier_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_frontier }
+        custom_tooltip = bmvd_group_selected_frontier_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_select_group_navy = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_navy_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_navy }
+        custom_tooltip = bmvd_group_selected_navy_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_select_group_imperial = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_imperial_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = administrative_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:admin_imperial }
+        custom_tooltip = bmvd_group_selected_imperial_tt
+    }
+    cost = { gold = 0 }
+}
+
+# ---- Celestial groups ----
+
+bmvd_celestial_select_group_civil = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_celestial_select_group_civil_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = celestial_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:celestial_civil }
+        custom_tooltip = bmvd_group_selected_celestial_civil_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_celestial_select_group_military = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_celestial_select_group_military_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        government = celestial_government
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:celestial_military }
+        custom_tooltip = bmvd_group_selected_celestial_military_tt
+    }
+    cost = { gold = 0 }
+}
+
+# ---- All governors (both gov types) ----
+
+bmvd_admin_select_group_all = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_select_group_all_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        NOT = { has_variable = bmvd_target_group }
+        any_vassal = { is_ruler = yes }
+    }
+    is_valid = { always = yes }
+    effect = {
+        set_variable = { name = bmvd_target_group value = flag:all }
+        custom_tooltip = bmvd_group_selected_all_tt
+    }
+    cost = { gold = 0 }
+}
+
+
+# =====================================================================
+# STEP 2  —  ADMIN/CELESTIAL: APPLY DIRECTIVE TO SELECTED GROUP
+#
+# One decision per directive. All shown only when bmvd_target_group is set.
+# switch fans out over the 9 possible flag values from Step 1.
+# After firing, bmvd_target_group is cleared automatically.
+# =====================================================================
+
+bmvd_admin_apply_train_commanders = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_train_commanders_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = train_commanders } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = train_commanders } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = train_commanders } }                                                                         set_vassal_directive = train_commanders } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = train_commanders } }                        set_vassal_directive = train_commanders } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = train_commanders } }               set_vassal_directive = train_commanders } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = train_commanders } }               set_vassal_directive = train_commanders } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_apply_build_military_buildings = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_build_military_buildings_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = build_military_buildings } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = build_military_buildings } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = build_military_buildings } }                                                                  set_vassal_directive = build_military_buildings } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = build_military_buildings } }               set_vassal_directive = build_military_buildings } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = build_military_buildings } }      set_vassal_directive = build_military_buildings } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = build_military_buildings } }      set_vassal_directive = build_military_buildings } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_apply_build_economical_buildings = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_build_economical_buildings_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = build_economical_buildings } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = build_economical_buildings } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = build_economical_buildings } }                                                               set_vassal_directive = build_economical_buildings } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = build_economical_buildings } }             set_vassal_directive = build_economical_buildings } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = build_economical_buildings } }    set_vassal_directive = build_economical_buildings } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = build_economical_buildings } }    set_vassal_directive = build_economical_buildings } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_apply_improve_development = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_improve_development_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = improve_development } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = improve_development } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = improve_development } }                                                                       set_vassal_directive = improve_development } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = improve_development } }                    set_vassal_directive = improve_development } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = improve_development } }           set_vassal_directive = improve_development } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = improve_development } }           set_vassal_directive = improve_development } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_apply_convert_to_culture = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_convert_to_culture_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = convert_to_culture } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = convert_to_culture } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_culture } }                                                                        set_vassal_directive = convert_to_culture } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = convert_to_culture } }                     set_vassal_directive = convert_to_culture } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = convert_to_culture } }            set_vassal_directive = convert_to_culture } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = convert_to_culture } }            set_vassal_directive = convert_to_culture } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}
+
+bmvd_admin_apply_convert_to_faith = {
+    picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
+    desc = bmvd_admin_apply_convert_to_faith_desc
+    major = yes
+    ai_check_interval = 0
+
+    is_shown = {
+        is_ruler = yes
+        OR = { government = administrative_government government = celestial_government }
+        has_variable = bmvd_target_group
+    }
+    is_valid = {
+        OR = {
+            AND = { var:bmvd_target_group = flag:all                any_vassal = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_balanced     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_military     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_civilian     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_frontier     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_navy         any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:admin_imperial     any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:celestial_civil    any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = convert_to_faith } } }
+            AND = { var:bmvd_target_group = flag:celestial_military any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = convert_to_faith } } }
+        }
+    }
+    effect = {
+        switch = {
+            trigger = var:bmvd_target_group
+            flag:all                = { every_vassal = { limit = { is_ruler = yes can_set_vassal_directive = { directive = convert_to_faith } }                                                                          set_vassal_directive = convert_to_faith } }
+            flag:admin_balanced     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced  can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:admin_military     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_military  can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:admin_civilian     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian  can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:admin_frontier     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier  can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:admin_navy         = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy      can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:admin_imperial     = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial  can_set_vassal_directive = { directive = convert_to_faith } }                       set_vassal_directive = convert_to_faith } }
+            flag:celestial_civil    = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor    can_set_vassal_directive = { directive = convert_to_faith } }              set_vassal_directive = convert_to_faith } }
+            flag:celestial_military = { every_vassal = { limit = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor can_set_vassal_directive = { directive = convert_to_faith } }              set_vassal_directive = convert_to_faith } }
+        }
+        remove_variable = bmvd_target_group
+        custom_tooltip = bmvd_mass_directive_applied_tt
+    }
+    cost = { gold = 0 }
+}

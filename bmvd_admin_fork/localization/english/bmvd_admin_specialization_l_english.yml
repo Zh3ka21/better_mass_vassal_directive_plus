@@ -1,0 +1,97 @@
+ l_english:
+ # ============================================================
+ # Better Mass Vassal Directive — Admin & Celestial Fork
+ # English Localization
+ # ============================================================
+
+ # Shared tooltips
+ bmvd_mass_directive_applied_tt:0 "Directive applied to all eligible vassals in the selected group."
+ bmvd_group_cleared_tt:0 "Group selection cleared."
+
+ # ============================================================
+ # STEP 1A — Non-admin/celestial: all-vassal directive decisions
+ # ============================================================
+
+ bmvd_mass_directive_all_train_commanders:0 "[BMVD] Mass Directive: Train Commanders"
+ bmvd_mass_directive_all_train_commanders_desc:0 "Order all capable vassals to train commanders and improve their men-at-arms."
+
+ bmvd_mass_directive_all_build_military_buildings:0 "[BMVD] Mass Directive: Build Military Buildings"
+ bmvd_mass_directive_all_build_military_buildings_desc:0 "Order all capable vassals to construct military buildings across their demesne."
+
+ bmvd_mass_directive_all_build_economical_buildings:0 "[BMVD] Mass Directive: Build Economical Buildings"
+ bmvd_mass_directive_all_build_economical_buildings_desc:0 "Order all capable vassals to construct economic buildings across their demesne."
+
+ bmvd_mass_directive_all_improve_development:0 "[BMVD] Mass Directive: Improve Development"
+ bmvd_mass_directive_all_improve_development_desc:0 "Order all capable vassals to focus on developing their holdings."
+
+ bmvd_mass_directive_all_convert_to_culture:0 "[BMVD] Mass Directive: Convert to Culture"
+ bmvd_mass_directive_all_convert_to_culture_desc:0 "Order all capable vassals to spread your culture across their territories."
+
+ bmvd_mass_directive_all_convert_to_faith:0 "[BMVD] Mass Directive: Convert to Faith"
+ bmvd_mass_directive_all_convert_to_faith_desc:0 "Order all capable vassals to spread your faith across their territories."
+
+ # ============================================================
+ # STEP 1B — Admin/Celestial: Select Vassal Group
+ # ============================================================
+
+ bmvd_admin_cancel_group:0 "[BMVD] Cancel Group Selection"
+ bmvd_admin_cancel_group_desc:0 "Clear the currently selected vassal group and start over."
+
+ bmvd_admin_select_group_balanced:0 "[BMVD] Select Group: Balanced"
+ bmvd_admin_select_group_balanced_desc:0 "Select your Balanced governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_balanced_tt:0 "Balanced governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_military:0 "[BMVD] Select Group: Military"
+ bmvd_admin_select_group_military_desc:0 "Select your Military governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_military_tt:0 "Military governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_civilian:0 "[BMVD] Select Group: Civilian"
+ bmvd_admin_select_group_civilian_desc:0 "Select your Civilian governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_civilian_tt:0 "Civilian governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_frontier:0 "[BMVD] Select Group: Frontier"
+ bmvd_admin_select_group_frontier_desc:0 "Select your Frontier governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_frontier_tt:0 "Frontier governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_navy:0 "[BMVD] Select Group: Naval"
+ bmvd_admin_select_group_navy_desc:0 "Select your Naval governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_navy_tt:0 "Naval governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_imperial:0 "[BMVD] Select Group: Imperial"
+ bmvd_admin_select_group_imperial_desc:0 "Select your Imperial governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_imperial_tt:0 "Imperial governors selected. Now pick a directive to apply."
+
+ bmvd_admin_select_group_all:0 "[BMVD] Select Group: All Governors"
+ bmvd_admin_select_group_all_desc:0 "Select all governors regardless of their specialisation as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_all_tt:0 "All governors selected. Now pick a directive to apply."
+
+ # ============================================================
+ # STEP 2 — Admin/Celestial: Apply Directive
+ # ============================================================
+
+ bmvd_admin_apply_train_commanders:0 "[BMVD] Apply: Train Commanders"
+ bmvd_admin_apply_train_commanders_desc:0 "Order all eligible governors in the selected group to train commanders and improve their men-at-arms."
+
+ bmvd_admin_apply_build_military_buildings:0 "[BMVD] Apply: Build Military Buildings"
+ bmvd_admin_apply_build_military_buildings_desc:0 "Order all eligible governors in the selected group to construct military buildings."
+
+ bmvd_admin_apply_build_economical_buildings:0 "[BMVD] Apply: Build Economical Buildings"
+ bmvd_admin_apply_build_economical_buildings_desc:0 "Order all eligible governors in the selected group to construct economic buildings."
+
+ bmvd_admin_apply_improve_development:0 "[BMVD] Apply: Improve Development"
+ bmvd_admin_apply_improve_development_desc:0 "Order all eligible governors in the selected group to focus on developing their holdings."
+
+ bmvd_admin_apply_convert_to_culture:0 "[BMVD] Apply: Convert to Culture"
+ bmvd_admin_apply_convert_to_culture_desc:0 "Order all eligible governors in the selected group to spread your culture."
+
+ bmvd_admin_apply_convert_to_faith:0 "[BMVD] Apply: Convert to Faith"
+ bmvd_admin_apply_convert_to_faith_desc:0 "Order all eligible governors in the selected group to spread your faith."
+
+ # Celestial group selections (additions)
+ bmvd_celestial_select_group_civil:0 "[BMVD] Select Group: Civil Governors"
+ bmvd_celestial_select_group_civil_desc:0 "Select your Civil governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_celestial_civil_tt:0 "Civil governors selected. Now pick a directive to apply."
+
+ bmvd_celestial_select_group_military:0 "[BMVD] Select Group: Military Governors"
+ bmvd_celestial_select_group_military_desc:0 "Select your Military governors as the target group. After confirming, choose a directive to apply to all of them."
+ bmvd_group_selected_celestial_military_tt:0 "Military governors selected. Now pick a directive to apply."
