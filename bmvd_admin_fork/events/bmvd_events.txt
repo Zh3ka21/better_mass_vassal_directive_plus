@@ -1,0 +1,156 @@
+########################################################################
+# BMVD — Events
+#
+# bmvd.001  —  Select Governor Group
+#              Options shown/hidden based on which gov type you have
+#              and which groups you actually have vassals in.
+#              Each option sets bmvd_target_group and fires bmvd.002.
+#
+# bmvd.002  —  Select Directive
+#              6 options, one per directive.
+#              Each option calls the matching scripted_effect and closes.
+########################################################################
+
+namespace = bmvd
+
+########################################################################
+# EVENT 001: Select Governor Group
+########################################################################
+
+bmvd.001 = {
+    type = character_event
+    title = bmvd.001.t
+    desc = bmvd.001.desc
+    theme = stewardship_domain
+
+    # Administrative groups — only shown if player is admin AND has vassals of that type
+    option = {
+        name = bmvd.001.balanced
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_balanced }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_balanced }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.military_admin
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_military }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_military }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.civilian
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_civilian }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_civilian }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.frontier
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_frontier }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_frontier }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.navy
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_navy }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_navy }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.imperial
+        is_shown = {
+            government = administrative_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = admin_theme_imperial }
+        }
+        set_variable = { name = bmvd_target_group value = flag:admin_imperial }
+        trigger_event = { id = bmvd.002 }
+    }
+
+    # Celestial groups
+    option = {
+        name = bmvd.001.celestial_civil
+        is_shown = {
+            government = celestial_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_civil_governor }
+        }
+        set_variable = { name = bmvd_target_group value = flag:celestial_civil }
+        trigger_event = { id = bmvd.002 }
+    }
+    option = {
+        name = bmvd.001.celestial_military
+        is_shown = {
+            government = celestial_government
+            any_vassal = { is_ruler = yes vassal_contract_has_flag = meritocratic_military_governor }
+        }
+        set_variable = { name = bmvd_target_group value = flag:celestial_military }
+        trigger_event = { id = bmvd.002 }
+    }
+
+    # All — always shown for both gov types
+    option = {
+        name = bmvd.001.all
+        set_variable = { name = bmvd_target_group value = flag:all }
+        trigger_event = { id = bmvd.002 }
+    }
+
+    # Cancel
+    option = {
+        name = bmvd.001.cancel
+        # no effect — just closes
+    }
+}
+
+########################################################################
+# EVENT 002: Select Directive
+########################################################################
+
+bmvd.002 = {
+    type = character_event
+    title = bmvd.002.t
+    desc = bmvd.002.desc
+    theme = stewardship_domain
+
+    option = {
+        name = bmvd.002.train_commanders
+        bmvd_apply_directive_train_commanders = yes
+    }
+    option = {
+        name = bmvd.002.build_military_buildings
+        bmvd_apply_directive_build_military_buildings = yes
+    }
+    option = {
+        name = bmvd.002.build_economical_buildings
+        bmvd_apply_directive_build_economical_buildings = yes
+    }
+    option = {
+        name = bmvd.002.improve_development
+        bmvd_apply_directive_improve_development = yes
+    }
+    option = {
+        name = bmvd.002.convert_to_culture
+        bmvd_apply_directive_convert_to_culture = yes
+    }
+    option = {
+        name = bmvd.002.convert_to_faith
+        bmvd_apply_directive_convert_to_faith = yes
+    }
+
+    # Back — returns to group selection
+    option = {
+        name = bmvd.002.back
+        trigger_event = { id = bmvd.001 }
+    }
+}
