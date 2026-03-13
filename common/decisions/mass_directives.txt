@@ -1,0 +1,33 @@
+mass_vassal_directives_grouped = {
+
+    picture = {
+        reference = "gfx/interface/illustrations/decisions/decision_generic.dds"
+    }
+
+    desc = mass_vassal_directives_grouped_desc
+
+    is_shown = {
+        any_vassal = { is_landed = yes }
+    }
+
+    effect = {
+
+        if = {
+            limit = {
+                OR = {
+                    has_government = administrative_government
+                    has_government = celestial_government
+                }
+            }
+
+            trigger_event = directive_groups.0001
+        }
+
+        else = {
+
+            trigger_event = directive_groups.0010
+        }
+    }
+
+    ai_will_do = { base = 0 }
+}

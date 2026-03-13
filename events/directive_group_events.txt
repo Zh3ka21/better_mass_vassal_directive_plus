@@ -1,0 +1,50 @@
+character_event = {
+
+    id = directive_groups.0001
+    title = choose_governor_group
+    desc = choose_governor_group_desc
+
+    option = {
+        name = frontier_governors
+
+        set_variable = {
+            name = directive_group
+            value = frontier
+        }
+
+        trigger_event = directive_groups.0002
+    }
+
+    option = {
+        name = civil_governors
+
+        set_variable = {
+            name = directive_group
+            value = civil
+        }
+
+        trigger_event = directive_groups.0002
+    }
+
+    option = {
+        name = balanced_governors
+
+        set_variable = {
+            name = directive_group
+            value = balanced
+        }
+
+        trigger_event = directive_groups.0002
+    }
+
+    option = {
+        name = military_governors
+
+        set_variable = {
+            name = directive_group
+            value = military
+        }
+
+        trigger_event = directive_groups.0002
+    }
+}

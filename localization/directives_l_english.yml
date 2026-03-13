@@ -1,0 +1,20 @@
+l_english:
+  mass_vassal_directives_grouped: "Mass Vassal Directives"
+  mass_vassal_directives_grouped_desc: "Give directives to specific governor types."
+
+  choose_governor_group: "Choose Governor Group"
+  choose_governor_group_desc: "Select which governors will receive directives."
+
+  frontier_governors: "Frontier Governors"
+  civil_governors: "Civil Governors"
+  balanced_governors: "Balanced Governors"
+  military_governors: "Military Governors"
+
+  choose_directive: "Select Directive"
+
+  improve_development: "Improve Development"
+  train_commanders: "Train Commanders"
+  build_maa: "Expand Men-at-Arms"
+  convert_faith: "Convert Faith"
+  convert_culture: "Convert Culture"
+  economic_buildings: "Economic Construction"
